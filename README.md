@@ -5,8 +5,7 @@ O projeto consiste em um programa capaz de ler uma gramática a partir de um arq
 - Python(a confirmar)
 
 # Estrutura inicial(a montar)
-lftc-gramatica/
-├── exemplos/
-├── src/
-├── README.md
-└── requirements.txt
+exemplos/
+src/
+README.md
+requirements.txt
