@@ -7,7 +7,7 @@ O projeto consiste em um programa capaz de ler uma gramática a partir de um arq
 # Objetivos do nosso trabalho
 
 O Objetivo principal é poder receber um arquivo do tipo .txt e avaliar a gramática contida nesse arquivo, de acordo com os tipos que ela representa e o tipo mais restritivo, no caso o tipo definitivo dessa gramática. 
-O nosso programa contém um pequeno Menu de opções, das quais uma delas você testar e criar um arquivo da gramática desse teste específico de uma vez. Eles ficam na pasta /exemplos do nosso programa, enquanto os códigos(incluindo a main) ficam na pasta /src
+O nosso programa contém um pequeno Menu de opções, das quais uma delas você testar e criar um arquivo da gramática desse teste específico de uma vez. Eles ficam na pasta /exemplos do nosso programa, enquanto os códigos(incluindo a main) ficam na pasta /src.
 
 
 # Como a gramática de LFTC foi representada no código
@@ -30,11 +30,10 @@ README.md
 
 # gramatica.py:
 
-Começa com uma lista citando as formas que a gramática digitada pode representar o epsilon
-
-Depois há uma função que recebe o caminho do arquivo como texto e cria a lista producoes = [], onde iremos guardar os "agrupamentos" da gramática
-
-Depois vamos abrir o arquivo para leitura. O with garante que o arquivo é fechado sozinho quando o bloco acaba. O encoding="utf-8" é necessário para o Python ler o ε e o → corretamente (sem isso, no Windows ele pode usar outra codificação e embaralhar esses caracteres). f será o nome que damos ao arquivo aberto.
+Começa com uma lista citando as formas que a gramática digitada pode representar o epsilon.
+Depois há uma função que recebe o caminho do arquivo como texto e cria a lista producoes = [], onde iremos guardar os "agrupamentos" da gramática.
+Daí iremos abrir o arquivo para leitura. O with garante que o arquivo é fechado sozinho quando o bloco acaba. 
+O encoding="utf-8" é necessário para o Python ler o ε e o → corretamente (sem isso, no Windows ele pode usar outra codificação e embaralhar esses caracteres). f será o nome que damos ao arquivo aberto.
 
 Já, percorrendo o f, o enumerate(f,1) faz um contador que começa em um pra gente fazer algumas voltas e teremos n como o número da linha e "linha" o texto. O n é para identificar a linha com erro, por exemplo
 
@@ -94,4 +93,4 @@ O elif é importante pois, para produções com epsilon, len(dir_) é 0 e a regr
 
 Função classificar:
 
-A lista começa com [0] porque toda gramática é tipo 0 (sem restrição). Depois testa os outros um por um, independentes e acrescenta (append) os que passam. Não paro no primeiro que passar porque, com a exceção do epsilon, os tipos não são totalmente aninhados.
+A lista começa com [0] porque toda gramática é tipo 0 (sem restrição). Depois testa os outros um por um, independentes e acrescenta (append) os que passam. 
