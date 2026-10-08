@@ -24,6 +24,8 @@ O nosso programa contém um pequeno Menu de opções, das quais uma delas você 
 /exemplos
 README.md
 
+
+
 ## ARQUIVOS DE CÓDIGO
 
 # gramatica.py:
@@ -61,3 +63,34 @@ Já fora do with: se o arquivo não tinha nenhuma produção, avisa.
 O símbolo inicial é o primeiro não terminal da primeira regra. producoes[0] é o primeiro agrupamento e [0] dentro dela é o lado esquerdo, daí producoes[0][0]. O for procura a primeira maiúscula, guarda em inicial e o break sai do for na hora, para não pegar as seguintes.
 
 Por fim, devolve os dois valores juntos.
+
+# classificar.py:
+
+Primeiramente, função que devolve True se o caractere é maiúsculo.
+
+Função do tipo3:
+- Percorre cada produção, já separando o par em esq e dir
+- Regra do tipo 3: o lado esquerdo é um único não terminal. Se o tamanho não é 1, ou se não é maiúsculo, essa produção já quebra a regra e a função devolve False imediatamente.
+- A -> epsilon é permitido. O continue para prosseguir pra próxima linha de gramática
+- A -> a: um símbolo só, e ele é terminal.
+- A -> aB: dois símbolos, o primeiro (dir_[0], posição 0) é terminal e o segundo (dir_[1]) é não terminal.
+
+Se chegou aqui dentro do for, a produção não encaixou em nenhum dos três formatos permitidos, então False. E o return True final (alinhado fora do for) só é alcançado se todas as produções passaram. A lógica é: um único erro reprova tudo, e só se ninguém reprovou a gramática é aprovada.
+
+Função do tipo2:
+   Mesma estrutura, mais simples: só exige um único não terminal à esquerda. O lado direito pode ser qualquer coisa, inclusive vazio.
+
+Função do tipo1:
+  Antes de tudo, descobrimos se o símbolo inicial aparece em algum lado direito.
+  inicial in dir_ verifica se o texto inicial está dentro do texto dir_ (como procurar uma letra numa palavra). Isso funciona porque cada símbolo tem 1 caractere. Precisamos disso por causa da exceção do epsilon.
+
+  Segundo for, com duas situações:
+
+    Produção que vai para epsilon (dir_ == ""): só é tipo 1 se o lado esquerdo é o inicial e o inicial não aparece em nenhum lado direito. Reprova se esq != inicial ou inicial_na_direita. 
+    Qualquer outra produção: a regra clássica |α| ≤ |β|, ou seja, o lado esquerdo não pode ser maior que o direito. Reprova se len(esq) > len(dir_).
+
+O elif é importante pois, para produções com epsilon, len(dir_) é 0 e a regra do tamanho reprovaria todas elas, então o epsilon é tratado à parte e não cai na regra de tamanho.
+
+Função classificar:
+
+A lista começa com [0] porque toda gramática é tipo 0 (sem restrição). Depois testa os outros um por um, independentes e acrescenta (append) os que passam. Não paro no primeiro que passar porque, com a exceção do epsilon, os tipos não são totalmente aninhados.
