@@ -1,0 +1,9 @@
+S-> X
+S-> &
+X-> aXBC
+X-> aBC
+CB-> BC
+aB -> ab
+bB-> bb
+bC->bc
+cC-> cc
