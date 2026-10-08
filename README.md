@@ -84,10 +84,11 @@ Função do tipo1:
   Antes de tudo, descobrimos se o símbolo inicial aparece em algum lado direito.
   inicial in dir_ verifica se o texto inicial está dentro do texto dir_ (como procurar uma letra numa palavra). Isso funciona porque cada símbolo tem 1 caractere. Precisamos disso por causa da exceção do epsilon.
 
-  Segundo for, com duas situações:
+  
+Segundo for, com duas situações:
 
-    Produção que vai para epsilon (dir_ == ""): só é tipo 1 se o lado esquerdo é o inicial e o inicial não aparece em nenhum lado direito. Reprova se esq != inicial ou inicial_na_direita. 
-    Qualquer outra produção: a regra clássica |α| ≤ |β|, ou seja, o lado esquerdo não pode ser maior que o direito. Reprova se len(esq) > len(dir_).
+- Produção que vai para epsilon (dir_ == ""): só é tipo 1 se o lado esquerdo é o inicial e o inicial não aparece em nenhum lado direito. Reprova se esq != inicial ou inicial_na_direita. 
+- Qualquer outra produção: a regra clássica |α| ≤ |β|, ou seja, o lado esquerdo não pode ser maior que o direito. Reprova se len(esq) > len(dir_).
 
 O elif é importante pois, para produções com epsilon, len(dir_) é 0 e a regra do tamanho reprovaria todas elas, então o epsilon é tratado à parte e não cai na regra de tamanho.
 
