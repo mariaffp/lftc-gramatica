@@ -21,14 +21,21 @@ O nosso programa contém um pequeno Menu de opções, das quais uma delas você 
 # Estrutura
 
 /src
+
 /exemplos
+
 README.md
 
+⚠️ **IMPORTANTE:** Antes de rodar o código, você precisa ajustar o caminho da pasta no arquivo `main.py`.
+Como o caminho das pastas varia de computador para computador, o projeto **não vai funcionar** se você pular esta etapa.
 
+1. Abra o arquivo `main.py`.
+2. Localize a variável `PASTA`.
+3. Altere o valor para o caminho absoluto correspondente no seu computador.
 
-## ARQUIVOS DE CÓDIGO
+# Arquivos de código
 
-# gramatica.py:
+## gramatica.py:
 
 Começa com uma lista citando as formas que a gramática digitada pode representar o epsilon.
 Depois há uma função que recebe o caminho do arquivo como texto e cria a lista producoes = [], onde iremos guardar os "agrupamentos" da gramática.
@@ -63,7 +70,7 @@ O símbolo inicial é o primeiro não terminal da primeira regra. producoes[0] �
 
 Por fim, devolve os dois valores juntos.
 
-# classificar.py:
+## classificar.py:
 
 Primeiramente, função que devolve True se o caractere é maiúsculo.
 
