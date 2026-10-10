@@ -1,5 +1,5 @@
 def nt(c):
-    # True se for maiúscula (não terminal)
+    # True se for maiúscula
     return c.isupper()
 
 
@@ -39,7 +39,7 @@ def eh_tipo1(producoes, inicial):
 
     for esq, dir_ in producoes:
         if dir_ == "":
-            # exceção do ε: só vale pro inicial, e só se ele nunca aparece à direita
+            # exceção do &: só vale pro inicial, e só se ele nunca aparece à direita
             if esq != inicial or inicial_na_direita:
                 return False
         elif len(esq) > len(dir_):
