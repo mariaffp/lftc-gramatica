@@ -37,12 +37,7 @@ O encoding="utf-8" é necessário para o Python ler o ε e o → corretamente (s
 
 Já, percorrendo o f, o enumerate(f,1) faz um contador que começa em um pra gente fazer algumas voltas e teremos n como o número da linha e "linha" o texto. O n é para identificar a linha com erro, por exemplo
 
- Esse código: linha = linha.split("#")[0].strip().replace("→", "->") tem 3 partes:
- - split("#") quebra o texto em pedaços sempre que acha um # e devolve uma lista. Isso é retirável, tinha colocado por causa de possíveis comentários no arquivo
-- strip() tira espaços e o \n (quebra de linha) das pontas.
-- replace("→", "->") troca a seta incomum pela seta de teclado, para o resto do código lidar com um formato só. ( caso precise !!!)
-
-Se sobrou texto vazio (linha em branco ou só comentário), o continue pula para a próxima volta do for sem fazer o resto.
+linha = linha.strip() tira os espaços e quebra de linha das pontas
 
 Se não tem seta, a linha é inválida. O ValueError  interrompe a função na hora e lança um erro com a mensagem. Quem chamou a função (o analisar, no main.py) captura isso com except e mostra a mensagem sem o programa quebrar. 
 
@@ -50,7 +45,7 @@ split("->", 1) quebra no -> uma única vez (o 1 limita) e devolve 2 pedaços. A 
 
 Percorre cada caractere c do lado esquerdo. Se achar alguma maiúscula (isupper()), marca tem_nt = True. No fim, se nenhuma foi encontrada, é erro: toda produção precisa de um não terminal à esquerda até então.
 
-O lado direito pode ter alternativas separadas por |. split("|") devolve uma lista com cada alternativa, e o for trata uma por vez, já sem espaços. (Em arquivo de uma produção por linha, só há uma alternativa e o for roda uma vez.) Isso é retirável pois não usamos muitos exemplos assim.
+Processando o lado direito, cada linha vai ser uma produção apenas nos exemplos, então não precisa tratar muito ele
 
 Se a alternativa é uma das formas de epsilon, trocamos por " " (vazio)
 Se está vazia por outro motivo, é um possível erro.
@@ -94,3 +89,13 @@ O elif é importante pois, para produções com epsilon, len(dir_) é 0 e a regr
 Função classificar:
 
 A lista começa com [0] porque toda gramática é tipo 0 (sem restrição). Depois testa os outros um por um, independentes e acrescenta (append) os que passam. 
+
+
+# main.py:
+
+O main.py faz um pequeno menu no terminal. Nele o usuário escolhe um arquivo da pasta exemplos/ (pelo número da lista ou pelo nome) ou cria um exemplo novo, digitando uma produção por linha. O arquivo criado é salvo em exemplos/ e já é analisado na hora.
+
+Para analisar, a função analisar chama ler_gramatica, que devolve as produções e o símbolo inicial, e passa os dois para classificar, que devolve a lista de tipos a que a gramática pertence. 
+O programa imprime essa lista e destaca o tipo mais restritivo, que é o maior número da lista. 
+Erros de leitura, como arquivo inexistente ou gramática mal escrita, são capturados e mostrados como mensagem, sem encerrar o programa.
+O menu roda em um laço e só termina quando o usuário escolhe sair.
