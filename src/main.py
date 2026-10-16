@@ -11,8 +11,8 @@ NOMES = {
     3: "Regular",
 }
 
-# pasta exemplos/ (varia de usuário para usuário, está no da Maria)
-PASTA = r"C:\Users\maria\Desktop\LFTCtrab1\lftc-gramatica\exemplos"
+# pasta exemplos/ (varia de usuário para usuário, está no da Mari)
+PASTA = r"C:\Users\marib\Documents\LFTC\lftc-gramatica\exemplos"
 
 
 def analisar(caminho):

@@ -4,12 +4,16 @@ def nt(c):
 
 
 def eh_tipo3(producoes):
+    # armazena os não terminais que produzem ε
+    nt_produz_epsilon = set()
+
     for esq, dir_ in producoes:
         # esquerda: um único não terminal
         if len(esq) != 1 or not nt(esq):
             return False
         # A -> ε
         if dir_ == "":
+            nt_produz_epsilon.add(esq)
             continue
         # A -> a
         if len(dir_) == 1 and not nt(dir_):
@@ -19,6 +23,11 @@ def eh_tipo3(producoes):
             continue
         # não encaixou em nenhum formato permitido
         return False
+
+    for esq, dir_ in producoes:
+        # A -> ε só vale se A não aparece em nenhum lado direito
+        if dir_ == "" and esq in nt_produz_epsilon:
+            return False
     return True
 
 
